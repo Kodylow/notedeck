@@ -1,11 +1,13 @@
-use crate::error::Error;
-use crate::imgcache::ImageCache;
-use crate::result::Result;
+use std::path;
+
 use egui::{pos2, Color32, ColorImage, Rect, Sense, SizeHint, TextureHandle};
 use image::imageops::FilterType;
 use poll_promise::Promise;
-use std::path;
 use tokio::fs;
+
+use crate::error::Error;
+use crate::imgcache::ImageCache;
+use crate::result::Result;
 
 //pub type ImageCacheKey = String;
 //pub type ImageCacheValue = Promise<Result<TextureHandle>>;

@@ -1,12 +1,13 @@
-use crate::{ui, Damus};
-use egui::containers::scroll_area::ScrollBarVisibility;
-use egui_virtual_list::VirtualList;
-use enostr::Filter;
-use nostrdb::{NoteKey, Subscription, Transaction};
 use std::cmp::Ordering;
 use std::sync::{Arc, Mutex};
 
+use egui::containers::scroll_area::ScrollBarVisibility;
+use egui_virtual_list::VirtualList;
+use enostr::Filter;
 use log::warn;
+use nostrdb::{NoteKey, Subscription, Transaction};
+
+use crate::{ui, Damus};
 
 #[derive(Debug, Eq, PartialEq, Copy, Clone)]
 pub struct NoteRef {

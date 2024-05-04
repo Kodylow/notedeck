@@ -1,11 +1,13 @@
 use std::collections::HashMap;
 use std::str::FromStr;
 
-use crate::Error;
-use nostr_sdk::{prelude::Keys, PublicKey, SecretKey};
+use nostr_sdk::prelude::Keys;
+use nostr_sdk::{PublicKey, SecretKey};
 use poll_promise::Promise;
 use reqwest::{Request, Response};
 use serde::{Deserialize, Serialize};
+
+use crate::Error;
 
 #[derive(Debug, PartialEq)]
 pub enum LoginError {
@@ -100,14 +102,13 @@ pub fn perform_key_retrieval(key: &str) -> Promise<Result<Keys, LoginError>> {
     Promise::spawn_async(async move { get_login_key(&key_string).await })
 }
 
-/// Attempts to turn a string slice key from the user into a Nostr-Sdk Keys object.
-/// The `key` can be in any of the following formats:
+/// Attempts to turn a string slice key from the user into a Nostr-Sdk Keys
+/// object. The `key` can be in any of the following formats:
 /// - Public Bech32 key (prefix "npub"): "npub1xyz..."
 /// - Private Bech32 key (prefix "nsec"): "nsec1xyz..."
 /// - Public hex key: "02a1..."
 /// - Private hex key: "5dab..."
 /// - NIP-05 address: "example@nostr.com"
-///
 pub async fn get_login_key(key: &str) -> Result<Keys, LoginError> {
     let tmp_key: &str = if let Some(stripped) = key.strip_prefix('@') {
         stripped

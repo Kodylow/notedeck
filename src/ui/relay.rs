@@ -1,9 +1,9 @@
-use crate::relay_pool_manager::{RelayPoolManager, RelayStatus};
-use crate::ui::{Preview, View};
 use egui::{Align, Button, Frame, Layout, Margin, Rgba, RichText, Rounding, Ui, Vec2};
+use enostr::RelayPool;
 
 use crate::app_style::NotedeckTextStyle;
-use enostr::RelayPool;
+use crate::relay_pool_manager::{RelayPoolManager, RelayStatus};
+use crate::ui::{Preview, View};
 
 pub struct RelayView<'a> {
     manager: RelayPoolManager<'a>,
@@ -49,7 +49,8 @@ impl<'a> RelayView<'a> {
         egui::CentralPanel::default().show(ui.ctx(), |ui| self.ui(ui));
     }
 
-    /// Show the current relays, and returns the indices of relays the user requested to delete
+    /// Show the current relays, and returns the indices of relays the user
+    /// requested to delete
     fn show_relays(&'a self, ui: &mut Ui) -> Option<Vec<usize>> {
         let mut indices_to_remove: Option<Vec<usize>> = None;
         for (index, relay_info) in self.manager.get_relay_infos().iter().enumerate() {
@@ -59,8 +60,11 @@ impl<'a> RelayView<'a> {
                     ui.horizontal(|ui| {
                         ui.with_layout(Layout::left_to_right(Align::Center), |ui| {
                             Frame::none()
-                                // This frame is needed to add margin because the label will be added to the outer frame first and centered vertically before the connection status is added so the vertical centering isn't accurate.
-                                // TODO: remove this hack and actually center the url & status at the same time
+                                // This frame is needed to add margin because the label will be
+                                // added to the outer frame first and centered vertically before the
+                                // connection status is added so the vertical centering isn't
+                                // accurate. TODO: remove this hack
+                                // and actually center the url & status at the same time
                                 .inner_margin(Margin::symmetric(0.0, 4.0))
                                 .show(ui, |ui| {
                                     egui::ScrollArea::horizontal()
@@ -68,7 +72,9 @@ impl<'a> RelayView<'a> {
                                         .max_width(
                                             ui.max_rect().width()
                                                 - get_right_side_width(relay_info.status),
-                                        ) // TODO: refactor to dynamically check the size of the 'right to left' portion and set the max width to be the screen width minus padding minus 'right to left' width
+                                        ) // TODO: refactor to dynamically check the size of the
+                                        // 'right to left' portion and set the max width to be the
+                                        // screen width minus padding minus 'right to left' width
                                         .show(ui, |ui| {
                                             ui.label(
                                                 RichText::new(relay_info.relay_url)

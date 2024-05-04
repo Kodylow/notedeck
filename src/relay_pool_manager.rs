@@ -2,7 +2,8 @@ use enostr::RelayPool;
 pub use enostr::RelayStatus;
 
 /// The interface to a RelayPool for UI components.
-/// Represents all user-facing operations that can be performed for a user's relays
+/// Represents all user-facing operations that can be performed for a user's
+/// relays
 pub struct RelayPoolManager<'a> {
     pub pool: &'a mut RelayPool,
 }
@@ -35,7 +36,7 @@ impl<'a> RelayPoolManager<'a> {
         }
     }
 
-    /// removes all specified relay indicies shown in get_relay_infos
+    /// removes all specified relay indices shown in get_relay_infos
     pub fn remove_relays(&mut self, mut indices: Vec<usize>) {
         indices.sort_unstable_by(|a, b| b.cmp(a));
         indices.iter().for_each(|index| self.remove_relay(*index));

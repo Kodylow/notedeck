@@ -1,13 +1,13 @@
+use egui::{
+    Align, Align2, Button, Color32, Frame, Id, Image, LayerId, Margin, Pos2, Rect, RichText,
+    Rounding, TextEdit, Ui, Vec2, Window,
+};
+
 use crate::app_style::NotedeckTextStyle;
 use crate::key_parsing::LoginError;
 use crate::login_manager::LoginManager;
 use crate::ui;
 use crate::ui::{Preview, View};
-use egui::{
-    Align, Align2, Button, Color32, Frame, Id, LayerId, Margin, Pos2, Rect, RichText, Rounding, Ui,
-    Vec2, Window,
-};
-use egui::{Image, TextEdit};
 
 pub struct AccountLoginView<'a> {
     manager: &'a mut LoginManager,

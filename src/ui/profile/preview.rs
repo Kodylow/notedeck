@@ -1,11 +1,12 @@
-use crate::app_style::NotedeckTextStyle;
-use crate::imgcache::ImageCache;
-use crate::ui::ProfilePic;
-use crate::{colors, images, DisplayName};
 use egui::load::TexturePoll;
 use egui::{RichText, Sense};
 use egui_extras::Size;
 use nostrdb::ProfileRecord;
+
+use crate::app_style::NotedeckTextStyle;
+use crate::imgcache::ImageCache;
+use crate::ui::ProfilePic;
+use crate::{colors, images, DisplayName};
 
 pub struct ProfilePreview<'a, 'cache> {
     profile: &'a ProfileRecord<'a>,
@@ -121,10 +122,11 @@ impl<'a, 'cache> egui::Widget for ProfilePreview<'a, 'cache> {
 }
 
 mod previews {
+    use egui::Widget;
+
     use super::*;
     use crate::test_data::test_profile_record;
     use crate::ui::{Preview, View};
-    use egui::Widget;
 
     pub struct ProfilePreviewPreview<'a> {
         profile: ProfileRecord<'a>,

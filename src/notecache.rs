@@ -1,7 +1,9 @@
+use std::time::Duration;
+
+use nostrdb::{Note, NoteReply, NoteReplyBuf};
+
 use crate::time::time_ago_since;
 use crate::timecache::TimeCached;
-use nostrdb::{Note, NoteReply, NoteReplyBuf};
-use std::time::Duration;
 
 pub struct NoteCache {
     reltime: TimeCached<String>,

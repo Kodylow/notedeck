@@ -1,6 +1,7 @@
+use egui::{vec2, Sense, TextureHandle};
+
 use crate::imgcache::ImageCache;
 use crate::ui::{Preview, View};
-use egui::{vec2, Sense, TextureHandle};
 
 pub struct ProfilePic<'cache, 'url> {
     cache: &'cache mut ImageCache,
@@ -99,10 +100,12 @@ fn paint_circle(ui: &mut egui::Ui, size: f32) -> egui::Response {
 }
 
 mod preview {
+    use std::collections::HashSet;
+
+    use nostrdb::*;
+
     use super::*;
     use crate::ui;
-    use nostrdb::*;
-    use std::collections::HashSet;
 
     pub struct ProfilePicPreview {
         cache: ImageCache,

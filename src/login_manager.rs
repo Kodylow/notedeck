@@ -1,8 +1,8 @@
-use crate::key_parsing::perform_key_retrieval;
-use crate::key_parsing::LoginError;
 use egui::{TextBuffer, TextEdit};
 use nostr_sdk::Keys;
 use poll_promise::Promise;
+
+use crate::key_parsing::{perform_key_retrieval, LoginError};
 
 /// The UI view interface to log in to a nostr account.
 #[derive(Default)]
@@ -49,12 +49,13 @@ impl<'a> LoginManager {
         }
     }
 
-    /// Whether to indicate to the user that there is a network operation occuring
+    /// Whether to indicate to the user that there is a network operation
+    /// occurring
     pub fn is_awaiting_network(&self) -> bool {
         self.promise_query.is_some()
     }
 
-    /// Whether to indicate to the user that a login error occured
+    /// Whether to indicate to the user that a login error occurred
     pub fn check_for_error(&'a mut self) -> Option<&'a LoginError> {
         if let Some(error_key) = &self.key_on_error {
             if self.login_key != *error_key {
@@ -66,7 +67,7 @@ impl<'a> LoginManager {
         self.error.as_ref()
     }
 
-    /// Whether to indicate to the user that a successful login occured
+    /// Whether to indicate to the user that a successful login occurred
     pub fn check_for_successful_login(&mut self) -> Option<Keys> {
         if let Some((_, promise)) = &mut self.promise_query {
             if promise.ready().is_some() {
@@ -89,9 +90,11 @@ impl<'a> LoginManager {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use nostr_sdk::PublicKey;
     use std::time::{Duration, Instant};
+
+    use nostr_sdk::PublicKey;
+
+    use super::*;
 
     #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
     async fn test_retrieve_key() {

@@ -1,13 +1,15 @@
 pub mod contents;
 pub mod options;
 
-pub use contents::NoteContents;
-pub use options::NoteOptions;
+use std::hash::{Hash, Hasher};
 
-use crate::{colors, ui, ui::is_mobile, Damus};
+pub use contents::NoteContents;
 use egui::{Label, RichText, Sense};
 use nostrdb::{NoteKey, Transaction};
-use std::hash::{Hash, Hasher};
+pub use options::NoteOptions;
+
+use crate::ui::is_mobile;
+use crate::{colors, ui, Damus};
 
 pub struct Note<'a> {
     app: &'a mut Damus,

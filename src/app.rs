@@ -1,27 +1,23 @@
+use std::collections::{HashMap, HashSet};
+use std::hash::Hash;
+use std::path::Path;
+use std::time::Duration;
+
+use egui::{Context, Frame, Margin, Style};
+use egui_extras::{Size, StripBuilder};
+use enostr::{ClientMessage, Filter, Pubkey, RelayEvent, RelayMessage, RelayPool};
+use nostrdb::{BlockType, Config, Mention, Ndb, Note, NoteKey, Transaction};
+use tracing::{debug, error, info, warn};
+
 use crate::app_creation::setup_cc;
 use crate::app_style::user_requested_visuals_change;
 use crate::error::Error;
 use crate::frame_history::FrameHistory;
 use crate::imgcache::ImageCache;
 use crate::notecache::NoteCache;
-use crate::timeline;
 use crate::timeline::{NoteRef, Timeline};
 use crate::ui::is_mobile;
-use crate::Result;
-
-use egui::{Context, Frame, Margin, Style};
-use egui_extras::{Size, StripBuilder};
-
-use enostr::{ClientMessage, Filter, Pubkey, RelayEvent, RelayMessage};
-use nostrdb::{BlockType, Config, Mention, Ndb, Note, NoteKey, Transaction};
-
-use std::collections::{HashMap, HashSet};
-use std::hash::Hash;
-use std::path::Path;
-use std::time::Duration;
-use tracing::{debug, error, info, warn};
-
-use enostr::RelayPool;
+use crate::{timeline, Result};
 
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub enum DamusState {
@@ -696,8 +692,9 @@ impl eframe::App for Damus {
         //eframe::set_value(storage, eframe::APP_KEY, self);
     }
 
-    /// Called each time the UI needs repainting, which may be many times per second.
-    /// Put your widgets into a `SidePanel`, `TopPanel`, `CentralPanel`, `Window` or `Area`.
+    /// Called each time the UI needs repainting, which may be many times per
+    /// second. Put your widgets into a `SidePanel`, `TopPanel`,
+    /// `CentralPanel`, `Window` or `Area`.
     fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
         self.frame_history
             .on_new_frame(ctx.input(|i| i.time), frame.info().cpu_usage);

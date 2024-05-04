@@ -1,5 +1,6 @@
-use crate::{colors, ui, Damus};
 use nostrdb::Transaction;
+
+use crate::{colors, ui, Damus};
 
 pub struct Mention<'a> {
     app: &'a mut Damus,

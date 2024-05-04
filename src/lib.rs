@@ -32,7 +32,6 @@ mod test_utils;
 pub use app::Damus;
 pub use error::Error;
 pub use profile::DisplayName;
-
 #[cfg(target_os = "android")]
 use winit::platform::android::EventLoopBuilderExtAndroid;
 

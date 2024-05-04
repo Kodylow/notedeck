@@ -22,6 +22,7 @@ impl<T> TimeCached<T> {
             self.last_update = Instant::now();
             self.value = Some((self.refresh)());
         }
-        self.value.as_ref().unwrap() // This unwrap is safe because we just set the value if it was None.
+        self.value.as_ref().unwrap() // This unwrap is safe because we just set
+                                     // the value if it was None.
     }
 }

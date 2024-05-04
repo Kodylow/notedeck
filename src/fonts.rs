@@ -1,5 +1,6 @@
-use egui::{FontData, FontDefinitions, FontTweak};
 use std::collections::BTreeMap;
+
+use egui::{FontData, FontDefinitions, FontTweak};
 use tracing::debug;
 
 pub enum NamedFontFamily {

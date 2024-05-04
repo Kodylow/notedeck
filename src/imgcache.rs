@@ -1,13 +1,11 @@
-use crate::Result;
-use egui::TextureHandle;
-use poll_promise::Promise;
-
-use egui::ColorImage;
-
 use std::collections::HashMap;
 use std::fs::File;
-
 use std::path;
+
+use egui::{ColorImage, TextureHandle};
+use poll_promise::Promise;
+
+use crate::Result;
 
 pub type ImageCacheValue = Promise<Result<TextureHandle>>;
 pub type ImageCacheMap = HashMap<String, ImageCacheValue>;

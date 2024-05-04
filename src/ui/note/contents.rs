@@ -1,8 +1,9 @@
-use crate::ui::note::NoteOptions;
-use crate::{colors, ui, Damus};
 use egui::{Color32, Hyperlink, Image, RichText};
 use nostrdb::{BlockType, Mention, Note, NoteKey, Transaction};
 use tracing::warn;
+
+use crate::ui::note::NoteOptions;
+use crate::{colors, ui, Damus};
 
 pub struct NoteContents<'a> {
     damus: &'a mut Damus,

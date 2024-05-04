@@ -1,13 +1,12 @@
+use egui::epaint::Shadow;
+use egui::style::{Interaction, Selection, WidgetVisuals, Widgets};
+use egui::{Button, Context, FontFamily, FontId, Rounding, Stroke, Style, TextStyle, Ui, Visuals};
+use strum::IntoEnumIterator;
+use strum_macros::EnumIter;
+
 use crate::colors::{
     desktop_dark_color_theme, light_color_theme, mobile_dark_color_theme, ColorTheme,
 };
-use egui::{
-    epaint::Shadow,
-    style::{Interaction, Selection, WidgetVisuals, Widgets},
-    Button, Context, FontFamily, FontId, Rounding, Stroke, Style, TextStyle, Ui, Visuals,
-};
-use strum::IntoEnumIterator;
-use strum_macros::EnumIter;
 
 const WIDGET_ROUNDING: Rounding = Rounding::same(8.0);
 
